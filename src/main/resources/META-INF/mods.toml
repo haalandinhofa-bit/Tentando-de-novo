@@ -1,0 +1,24 @@
+modLoader="javafml"
+loaderVersion="[47,)"
+license="All Rights Reserved"
+
+[[mods]]
+modId="vexhorror"
+version="1.0.0"
+displayName="Vex Horror"
+authors="Vex"
+description='''A horror mod for Minecraft Java 1.20.1. The creature and chase systems are under development.'''
+
+[[dependencies.vexhorror]]
+modId="forge"
+mandatory=true
+versionRange="[47,)"
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.vexhorror]]
+modId="minecraft"
+mandatory=true
+versionRange="[1.20.1,1.21)"
+ordering="NONE"
+side="BOTH"
