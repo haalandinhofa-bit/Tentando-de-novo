@@ -2,7 +2,7 @@ package com.vexhorror.registry;
 
 import com.vexhorror.VexHorror;
 import net.minecraft.world.item.Item;
-import net.minecraftforge.common.DeferredSpawnEggItem;
+import net.minecraftforge.common.util.DeferredSpawnEggItem;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
