@@ -2,7 +2,7 @@ package com.vexhorror.registry;
 
 import com.vexhorror.VexHorror;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.SpawnEggItem;
+import net.minecraftforge.common.DeferredSpawnEggItem;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
@@ -13,7 +13,7 @@ public final class ModItems {
 
     public static final RegistryObject<Item> VEX_STALKER_SPAWN_EGG =
             ITEMS.register("vex_stalker_spawn_egg", () ->
-                    new SpawnEggItem(ModEntities.VEX_STALKER.get(), 0x15151B, 0xA50018, new Item.Properties()));
+                    new DeferredSpawnEggItem(ModEntities.VEX_STALKER, 0x15151B, 0xA50018, new Item.Properties()));
 
     private ModItems() {}
 }
