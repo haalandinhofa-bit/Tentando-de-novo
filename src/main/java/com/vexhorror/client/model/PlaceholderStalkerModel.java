@@ -12,14 +12,13 @@ import net.minecraft.client.model.geom.builders.PartDefinition;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 
-/** Modelo provisório geométrico para testar o renderer e a animação de caminhada. */
+/** Modelo geométrico provisório com UVs compatíveis com a textura vanilla de zumbi 64x64. */
 public class PlaceholderStalkerModel extends HierarchicalModel<VexStalker> {
     public static final ModelLayerLocation LAYER_LOCATION =
             new ModelLayerLocation(new ResourceLocation("vexhorror", "placeholder_stalker"), "main");
 
     private final ModelPart root;
     private final ModelPart head;
-    private final ModelPart body;
     private final ModelPart leftArm;
     private final ModelPart rightArm;
     private final ModelPart leftLeg;
@@ -28,7 +27,6 @@ public class PlaceholderStalkerModel extends HierarchicalModel<VexStalker> {
     public PlaceholderStalkerModel(ModelPart root) {
         this.root = root;
         this.head = root.getChild("head");
-        this.body = root.getChild("body");
         this.leftArm = root.getChild("left_arm");
         this.rightArm = root.getChild("right_arm");
         this.leftLeg = root.getChild("left_leg");
@@ -38,19 +36,22 @@ public class PlaceholderStalkerModel extends HierarchicalModel<VexStalker> {
     public static LayerDefinition createBodyLayer() {
         MeshDefinition mesh = new MeshDefinition();
         PartDefinition root = mesh.getRoot();
+
+        // UVs separados para cada membro no layout moderno 64x64 do zumbi.
         root.addOrReplaceChild("head", CubeListBuilder.create().texOffs(0, 0)
-                .addBox(-4F, -8F, -4F, 8F, 8F, 8F), PartPose.offset(0F, 0F, 0F));
+                .addBox(-4F, -8F, -4F, 8F, 8F, 8F), PartPose.ZERO);
         root.addOrReplaceChild("body", CubeListBuilder.create().texOffs(16, 16)
-                .addBox(-4F, 0F, -2F, 8F, 12F, 4F), PartPose.offset(0F, 0F, 0F));
-        root.addOrReplaceChild("left_arm", CubeListBuilder.create().texOffs(40, 16)
-                .addBox(-1F, -2F, -1F, 2F, 12F, 2F), PartPose.offset(5F, 2F, 0F));
+                .addBox(-4F, 0F, -2F, 8F, 12F, 4F), PartPose.ZERO);
         root.addOrReplaceChild("right_arm", CubeListBuilder.create().texOffs(40, 16)
                 .addBox(-1F, -2F, -1F, 2F, 12F, 2F), PartPose.offset(-5F, 2F, 0F));
-        root.addOrReplaceChild("left_leg", CubeListBuilder.create().texOffs(0, 16)
-                .addBox(-1.5F, 0F, -1.5F, 3F, 12F, 3F), PartPose.offset(2F, 12F, 0F));
+        root.addOrReplaceChild("left_arm", CubeListBuilder.create().texOffs(32, 48)
+                .addBox(-1F, -2F, -1F, 2F, 12F, 2F), PartPose.offset(5F, 2F, 0F));
         root.addOrReplaceChild("right_leg", CubeListBuilder.create().texOffs(0, 16)
                 .addBox(-1.5F, 0F, -1.5F, 3F, 12F, 3F), PartPose.offset(-2F, 12F, 0F));
-        return LayerDefinition.create(mesh, 64, 32);
+        root.addOrReplaceChild("left_leg", CubeListBuilder.create().texOffs(16, 48)
+                .addBox(-1.5F, 0F, -1.5F, 3F, 12F, 3F), PartPose.offset(2F, 12F, 0F));
+
+        return LayerDefinition.create(mesh, 64, 64);
     }
 
     @Override
